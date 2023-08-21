@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    .blog-input {
+        @apply w-full outline-none border indent-1 py-0.5 rounded-sm
+    }
+    .blog-editor {
+        @apply h-[300px] mb-14  block w-full
+    }
+    .login-input {
+        @apply focus:outline-none hover:outline-none  border border-gray-300 focus:border-zinc-500 h-10
+    }
+}
