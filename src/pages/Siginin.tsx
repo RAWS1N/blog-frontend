@@ -34,7 +34,7 @@ const Signin = () => {
       localStorage.setItem("user",JSON.stringify(data.data.user))
       Navigator('/')
     },
-    onError : () => {setUser(null),localStorage.removeItem("user")}
+    onError : (e) => {setUser(null),localStorage.removeItem("user"),console.log(e)}
     
   })
 
