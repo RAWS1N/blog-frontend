@@ -7,16 +7,16 @@ interface BlogModel {
 }
 
 
-interface SingleBlogModel {
-    _id : string,
-    title : string,
-    description : string,
-    createdAt : Date,
-    author : string,
-    image:string,
-    likes: string[],
-    comments:object[]
-}
+// interface SingleBlogModel {
+//     _id : string,
+//     title : string,
+//     description : string,
+//     createdAt : Date,
+//     author : string,
+//     image:string,
+//     likes: string[],
+//     comments:object[]
+// }
 
 
 export default BlogModel
