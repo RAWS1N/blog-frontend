@@ -12,8 +12,6 @@ interface AuthProps {
 interface AuthContextType {
     user : UserType,
     setUser : (user:object | null) => void,
-    // getUserProfile : () => void,
-    // isLoading : boolean
 }
 
 

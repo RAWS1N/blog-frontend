@@ -7,11 +7,10 @@ interface RouteProps {
 }
 
 const ProtectedRoute: React.FC<RouteProps> = ({ children }) => {
-    const { user, isLoading } = useContext(AuthContext)
+    const { user} = useContext(AuthContext)
     const Navigator = useNavigate()
 
     useEffect(() => {
-        if (isLoading) return
         const user = localStorage.getItem('user')
         if (!user) {
             Navigator('/signin')
