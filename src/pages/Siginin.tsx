@@ -30,8 +30,9 @@ const Signin = () => {
     mutationFn: (variables) => loginUser(variables),
     // onMutate : () => console.log('request sent'),
     onSuccess : (data) => {
-      setUser(data.data.user)
-      localStorage.setItem("user",JSON.stringify(data.data.user))
+      setUser(data.data)
+      
+      localStorage.setItem("user",JSON.stringify(data.data))
       Navigator('/')
     },
     onError : (e) => {setUser(null),localStorage.removeItem("user"),console.log(e)}

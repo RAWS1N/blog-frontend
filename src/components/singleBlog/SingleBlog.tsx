@@ -37,7 +37,12 @@ const SingleBlog = () => {
 
 
   const addCommentRequest = async (data) => {
-    const res = await Server.post('/comment/add', data, { withCredentials: true })
+    const config = {
+      headers: {
+        Authorization: `Bearer ${currentUser?.token}`
+      }
+    }
+    const res = await Server.post('/comment/add', data, config)
     socket.emit('comment',data)
     setComments(prevState => ([res.data.comment,...prevState]))
     return res.data
@@ -62,8 +67,13 @@ const SingleBlog = () => {
   
   const deleteBlogById = async () => {
     try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${currentUser?.token}`
+        }
+      }
       const postData = {id,image:blog.image}
-      const res = await Server.post(`/blog/delete`,postData,{ withCredentials: true })
+      const res = await Server.post(`/blog/delete`,postData,config)
       toast.success(res.data.message)
       setTimeout(() => {
         Navigator('/')
@@ -77,7 +87,12 @@ const SingleBlog = () => {
 
   const likePost = async () => {
     try {
-      const res = await Server.post('/like', { blogId: blog._id }, { withCredentials: true })
+      const config = {
+        headers: {
+          Authorization: `Bearer ${currentUser?.token}`
+        }
+      }
+      const res = await Server.post('/like', { blogId: blog._id },config)
       socket.emit("like",currentUser._id)
       if(res.data.type === 'remove'){
         setLikes(prevState => prevState.filter(user => user !== res.data.user))
@@ -89,7 +104,6 @@ const SingleBlog = () => {
     }
     catch (e) {
       toast.error(e.response.data.message)
-      console.log(e)
     }
   }
 

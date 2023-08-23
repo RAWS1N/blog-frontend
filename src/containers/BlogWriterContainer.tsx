@@ -1,6 +1,6 @@
 // @ts-nocheck
 import Editor from "../components/editor/Editor"
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState,useContext } from 'react'
 import axios from "axios"
 import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
@@ -10,6 +10,7 @@ import { Link } from "react-router-dom"
 import { BsArrowLeft } from "react-icons/bs"
 import ImageModal from "../components/modals/ImageModal"
 import useImageUpload from "../hooks/useImageUpload"
+import { AuthContext } from "../context/AuthContext"
 
 interface BlogDataTypes {
   title: string,
@@ -22,6 +23,7 @@ const BlogWriterContainer = () => {
   const [value, setValue] = useState('')
   const titleRef = useRef(null)
   const [selectedImage, setSelectedImage] = useState()
+  const {user} = useContext(AuthContext)
   const [blogData, setBlogData] = useState<BlogDataTypes>({
     title: '',
     tags: '',
@@ -76,14 +78,18 @@ const BlogWriterContainer = () => {
       return
     }
     try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user?.token}`
+        }
+      }
       const picture = await handlePictureSelect(image)
-      console.log(picture)
       const shouldAddImage = picture.length > 0 ? picture: image ? image :  undefined
       const res = await Server.post('/blog/create', {
         title,
         description,
         image: shouldAddImage
-      }, { withCredentials: true })
+      }, config)
       toast.success(res?.data?.message)
       console.log(res)
       return res.data
@@ -92,6 +98,7 @@ const BlogWriterContainer = () => {
 
 
     catch (e) {
+      console.log(e)
       toast.error(e.response.data.message)
       console.log(e.response.data.message)
     }

@@ -11,7 +11,12 @@ const Profile = () => {
   const { user } = useContext(AuthContext)
 
   const getUserBlogs = async () => {
-    const res = await Server.get('/blog/myblogs', { withCredentials: true })
+    const config = {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    }
+    const res = await Server.get('/blog/myblogs',config)
     return res.data
   }
 

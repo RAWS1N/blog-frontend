@@ -10,7 +10,12 @@ const Navbar = () => {
   const Navigator = useNavigate()
 
   const logout = async () => {
-    const res = Server.get('/user/logout', { withCredentials: true })
+    const config = {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    }
+    const res = Server.get('/user/logout',config )
     setUser(null)
     localStorage.clear()
     Navigator('/')
@@ -32,8 +37,8 @@ const Navbar = () => {
 
         <Link to="/"><CiHome className="h-8 w-8 " /></Link>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            {user ? <img src={user?.picture} className=' object-cover rounded-full' />
+          <label tabIndex={0} className="btn btn-md btn-ghost btn-circle avatar">
+            {user ? <img src={user.picture} className=' object-cover  rounded-full' />
             :<CiUser className="h-5/6 w-11/12"/>}
           </label>
           <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">

@@ -9,12 +9,14 @@ import SingleBlog from './components/singleBlog/SingleBlog'
 import BlogEditor from './pages/BlogEditor'
 import Profile from './pages/Profile'
 import ProtectedRoute from './utils/ProtectedRoute'
+import AuthProvider from './context/AuthContext'
 
 
 
 const App = () => {
   return (
     <BrowserRouter>
+      <AuthProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -38,6 +40,7 @@ const App = () => {
 
       </Routes>
       <Toaster />
+      </AuthProvider>
     </BrowserRouter>
 
   )

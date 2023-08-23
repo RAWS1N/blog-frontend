@@ -6,5 +6,6 @@ export interface UserType {
     blogs: string[],
     createdAt: string,
     updatedAt: string,
-    __v: number
+    __v: number,
+    token : string
   }

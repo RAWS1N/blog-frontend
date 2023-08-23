@@ -1,6 +1,6 @@
 // @ts-nocheck
 import Editor from "../components/editor/Editor"
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useMutation, useQuery } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 import { BsArrowLeft } from 'react-icons/bs'
@@ -8,9 +8,11 @@ import Server from "../utils/Server"
 import { getBlogById } from "../APIManager/Blog"
 import { Link, useParams } from "react-router-dom"
 import ImageModal from "../components/modals/ImageModal"
+import { AuthContext } from "../context/AuthContext"
 
 const BlogEditorContainer = () => {
   const [value, setValue] = useState<string>('')
+  const {user} = useContext(AuthContext)
   const [blogData, setBlogData] = useState({
     title: '',
     tags: '',
@@ -50,12 +52,17 @@ const BlogEditorContainer = () => {
       return
     }
     try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user?.token}`
+        }
+      }
       const res = await Server.post('/blog/edit', {
         id,
         title,
         description,
         image : image.length > 0 ? image : undefined
-      }, { withCredentials: true })
+      }, config)
       toast.success(res?.data?.message)
       return res.data
 
