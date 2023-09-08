@@ -3,10 +3,6 @@ import { AuthContext } from "../context/AuthContext"
 import Server from "../utils/Server"
 import { useQuery } from "@tanstack/react-query"
 import Blog from "../components/blog/Blog"
-import BlogII from "../components/blog/BlogII"
-
-
-
 
 const Profile = () => {
   const { user } = useContext(AuthContext)
@@ -38,7 +34,7 @@ const Profile = () => {
         <div className=" flex  flex-wrap items-center justify-center  gap-4 my-6">
           {data?.data?.map((blog: any) => {
             const { author: { name }, _id, title, image } = blog
-            return <BlogII
+            return <Blog
               key={_id}
               author={name}
               _id={_id}
