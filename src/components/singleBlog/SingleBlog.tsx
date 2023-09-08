@@ -133,14 +133,14 @@ const SingleBlog = () => {
   const blogDate = date.toLocaleDateString('en-US', options);
   return (
     <div className=" text-black mb-4 ">
-      <img src={blog?.image} alt="header" className="w-full h-[150px] md:h-[350px] object-cover" />
-      <div className="bg-white py-4 px-2   mx-auto ">
+      <img src={blog?.image} alt="header" className="w-full h-[150px] md:h-[350px] object-center" />
+      <div className="bg-white py-4 px-2   mx-auto w-full ">
         <div
           className={`flex  ${currentUser?._id === blog?.author?._id && "flex-col"
-            }  lg:flex-row justify-between mb-4 `}
+            }  lg:flex-row justify-between mb-4`}
         >
           <div className="space-y-3 flex-1 px-4">
-            <h1 className="text-2xl md:text-3xl capitalize break-all  md:w-10/12">
+            <h1 className="text-2xl md:text-3xl capitalize   md:w-10/12">
               {blog?.title}
             </h1>
             <div className="flex  md:flex-row gap-1 lg:gap-2 text-sm text-gray-500 md:items-center">
@@ -175,7 +175,7 @@ const SingleBlog = () => {
           </div>
         </div>
         <div
-          className="leading-relaxed px-4 break-all w-10/12 text-lg mt-4"
+          className="leading-relaxed px-4   text-lg mt-4"
           dangerouslySetInnerHTML={{ __html: blog?.description }}
         ></div>
       </div>

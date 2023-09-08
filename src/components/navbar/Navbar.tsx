@@ -29,16 +29,16 @@ const Navbar = () => {
 
 
   return (
-    <div className="navbar sticky top-0 right-0 left-0 z-50 bg-base-100 px-4 border-b pr-5">
+    <div className="navbar sticky top-0 right-0 left-0 z-50 bg-base-100 px-4  border-b pr-5">
       <div className="flex-1">
         <Link to="/" className=" normal-case text-2xl cursor-pointer font-semibold tracking-wider">Blogger</Link>
       </div>
-      <div className="flex-none space-x-3">
+      <div className="flex items-center  space-x-3">
 
-        <Link to="/"><CiHome className="h-8 w-8 " /></Link>
+        <Link to="/"><CiHome className="h-7 w-7 " /></Link>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-md btn-ghost btn-circle avatar">
-            {user ? <img src={user.picture} className=' object-cover  rounded-full' />
+          <label tabIndex={0} className="bg-rose-500 h-12">
+            {user ? <img src={user.picture} className='h-8 w-8 rounded-full' />
             :<CiUser className="h-5/6 w-11/12"/>}
           </label>
           <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import Editor from "../components/editor/Editor"
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { useMutation, useQuery } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 import { BsArrowLeft } from 'react-icons/bs'
@@ -20,11 +20,19 @@ const BlogEditorContainer = () => {
   })
 
   const { id }: string | any = useParams()
-  const { data: blog } = useQuery({
+
+  const { data: blog,isLoading,isError } = useQuery({
     queryKey: ['blog', id],
     queryFn: () => getBlogById(id),
-    onSuccess: (data) => { setBlogData(data), setValue(data.description) }
+    // onSuccess: (data) => { setBlogData(data), setValue(data.description) }
   })
+
+  useEffect(() => {
+    if(!isLoading && !isError && blog){
+      setBlogData(blog)
+      setValue(blog.description)
+    }
+  },[])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value,type,files } = e.target
@@ -39,7 +47,7 @@ const BlogEditorContainer = () => {
       reader.readAsDataURL(file);
     }
   }
-
+  console.log(blogData.image)
 
   interface BlogProperty {
     title: string,
@@ -88,10 +96,7 @@ const BlogEditorContainer = () => {
     })
   }
 
-  
-
-
-
+ 
 
   return (
     <>
@@ -103,7 +108,8 @@ const BlogEditorContainer = () => {
           <span>OR</span>
           <input onChange={handleChange} id="file" type="file" name="image" accept="image/*" className=" file-input text-sm whitespace-nowrap rounded-sm file-input-bordered file-input-sm w-full max-w-xs focus:outline-none" />
           <button  onClick={() => window.my_modal_5.showModal()} className="bg-gray-200 px-4 py-1 text-sm whitespace-nowrap">View Image</button>
-          <ImageModal selectedImage={blogData?.image ? blogData?.image : blog?.image} />
+          {/* <ImageModal selectedImage={blogData?.image.length > 0 ? blogData?.image : blog?.image} /> */}
+          <ImageModal selectedImage={blogData?.image} />
         </div>
 
         <input type="text" name="tags" className="blog-input" placeholder="Tags" onChange={handleChange} value={blogData.tags} />

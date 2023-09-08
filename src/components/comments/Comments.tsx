@@ -17,7 +17,7 @@ const Comments: React.FC<CommentProps> = ({ comments, setComments,addComment,com
         <>
             <div className="mt-20">
                 <div className="flex gap-4 items-center">
-                {user ? <img src={user?.picture} className=' object-cover h-10 w-10 rounded-full' /> : <BiSolidUserCircle className="h-14 w-14 md:h-12 md:w-12" />}
+                {user ? <img src={user?.picture} className=' object-cover h-10 w-10 rounded-full hidden md:block' /> : <BiSolidUserCircle className="h-14 w-14 md:h-12 md:w-12" />}
                     <input autoFocus value={comment.trim()} onChange={(e) => setComment(e.target.value)} type="text" className="w-full border border-zinc-900 rounded-md indent-2 focus:outline-black h-8 " />
                     <button onClick={(e) => addComment(e) } disabled={!comment.trim()} className="btn btn-sm rounded-full bg-zinc-900 text-white hover:bg-zinc-900 hover:text-white ">comment</button>
                 </div>
