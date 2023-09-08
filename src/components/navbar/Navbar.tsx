@@ -39,7 +39,7 @@ const Navbar = () => {
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="bg-rose-500 h-12">
             {user ? <img src={user.picture} className='h-8 w-8 rounded-full' />
-            :<CiUser className="h-5/6 w-11/12"/>}
+            :<CiUser className="h-7 w-7"/>}
           </label>
           <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
             {user ? <li>
