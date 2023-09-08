@@ -137,15 +137,15 @@ const SingleBlog = () => {
       <div className="bg-white py-4 px-2   mx-auto w-full ">
         <div
           className={`flex  ${currentUser?._id === blog?.author?._id && "flex-col"
-            }  lg:flex-row justify-between mb-4`}
+            }  lg:flex-row justify-between mb-4 flex-col w-full`}
         >
-          <div className="space-y-3 flex-1 px-4">
-            <h1 className="text-2xl md:text-3xl capitalize   md:w-10/12">
+          <div className="space-y-3 flex-1 px-4 ">
+            <h1 className="text-2xl md:text-3xl capitalize  md:w-10/12">
               {blog?.title}
             </h1>
             <div className="flex  md:flex-row gap-1 lg:gap-2 text-sm text-gray-500 md:items-center">
               <p className="">{blog?.author?.name}</p>
-              <p className="h-4 border hidden md:block"></p>
+              <p className="h-4 border  md:block"></p>
               <p className="">{blogDate}</p>
             </div>
           </div>
@@ -167,8 +167,8 @@ const SingleBlog = () => {
                 </div>
               </>
             )}
-            <div className="flex items-center gap-2 mx-4 cursor-pointer">
-              {liked ? <FcLike onClick={likePost} className="ml-4 h-7 w-7" /> : <FcLikePlaceholder onClick={likePost} className="ml-4 h-7 w-7" />}
+            <div className="flex  gap-2  cursor-pointer">
+              {liked ? <FcLike onClick={likePost} className="ml-4 h-7 w-7" /> : <FcLikePlaceholder onClick={likePost} className="ml-0 h-7 w-7" />}
               <span>{likes.length}</span>
               <CiShare2 className="h-7 w-7  " />
             </div>
